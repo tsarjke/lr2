@@ -1,0 +1,8 @@
+#!/bin/bash
+
+nfdump -r nfcapd_202002251200.202002251200 -o csv > source.csv
+gcc lr2.c -o lr2 -lm
+./lr2
+echo -e "set terminal png size 800, 600 \nset output 'graph.png' \nplot 'graph.txt' with lines title 'трафик (Кб) от времени (с)'" >> graph.plt
+gnuplot graph.plt
+rm lr2 source.csv graph.txt graph.plt
